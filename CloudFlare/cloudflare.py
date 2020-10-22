@@ -117,7 +117,7 @@ class CloudFlare(object):
             self._AddAuthHeaders(headers, method)
             if isinstance(data, str):
                 # passing javascript vs JSON
-                headers['Content-Type'] = 'application/javascript'
+                headers['Content-Type'] = 'application/json'
             if files:
                 # overwrite Content-Type as we are uploading data
                 headers['Content-Type'] = 'multipart/form-data'
@@ -137,7 +137,7 @@ class CloudFlare(object):
             self._AddAuthHeaders(headers, method)
             if isinstance(data, str):
                 # passing javascript vs JSON
-                headers['Content-Type'] = 'application/javascript'
+                headers['Content-Type'] = 'application/json'
             if files:
                 # overwrite Content-Type as we are uploading data
                 headers['Content-Type'] = 'multipart/form-data'
@@ -380,7 +380,7 @@ class CloudFlare(object):
                         response_data = {'success': False,
                                          'code': response_code,
                                          'result': response_data}
-            elif response_type == 'text/javascript' or response_type == 'application/javascript':
+            elif response_type == 'text/javascript' or response_type == 'application/json':
                 # used by Cloudflare workers
                 if response_code == requests.codes.ok:
                     # 200 ok
